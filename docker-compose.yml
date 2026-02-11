@@ -1,0 +1,36 @@
+services:
+  frontend:
+    build: ./frontend
+    ports:
+      - "8080:80"
+    depends_on:
+      - backend
+    networks:
+      - private
+
+  backend:
+    build: ./backend
+    environment:
+      REDIS_URL: redis://redis:6379/0
+    depends_on:
+      - redis
+    networks:
+      - private
+
+  worker:
+    build: ./worker
+    environment:
+      REDIS_URL: redis://redis:6379/0
+    depends_on:
+      - redis
+    networks:
+      - private
+
+  redis:
+    image: redis:7.4-alpine
+    networks:
+      - private
+
+networks:
+  private:
+    driver: bridge
