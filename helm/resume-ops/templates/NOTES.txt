@@ -1,0 +1,7 @@
+1. Access ResumeOps using:
+{{- if .Values.frontend.ingress.enabled }}
+  http{{ if .Values.frontend.ingress.tls.enabled }}s{{ end }}://{{ .Values.frontend.ingress.host }}
+{{- else }}
+  kubectl port-forward svc/{{ include "resume-ops.fullname" . }}-frontend 8080:{{ .Values.frontend.service.port }} -n {{ .Release.Namespace }}
+  then open http://localhost:8080
+{{- end }}

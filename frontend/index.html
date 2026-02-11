@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ResumeOps</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main>
+      <h1>ResumeOps Private Platform</h1>
+      <p>Generate tailored resumes and auto-apply to jobs through private internal APIs.</p>
+
+      <section>
+        <h2>Profile</h2>
+        <textarea id="profile" rows="8">{
+  "full_name": "Alex Doe",
+  "email": "alex@example.com",
+  "title": "Senior Backend Engineer",
+  "summary": "Backend engineer with distributed systems and platform experience.",
+  "skills": ["Python", "FastAPI", "Kubernetes", "PostgreSQL", "Redis"],
+  "experience": ["Built API platform serving 50M+ requests/day", "Led migration to Kubernetes"],
+  "preferred_roles": ["Platform Engineer", "Backend Engineer"]
+}</textarea>
+      </section>
+
+      <section>
+        <h2>Resume Target</h2>
+        <input id="targetRole" value="Senior Platform Engineer" />
+        <input id="targetCompany" value="Contoso" />
+        <input id="keywords" value="kubernetes, platform engineering, microservices" />
+        <button id="generate">Generate Resume</button>
+      </section>
+
+      <section>
+        <h2>Generated Resume</h2>
+        <pre id="resume"></pre>
+      </section>
+
+      <section>
+        <h2>Jobs (JSON array)</h2>
+        <textarea id="jobs" rows="8">[
+  {
+    "company": "Contoso",
+    "role": "Senior Platform Engineer",
+    "location": "Remote",
+    "description": "Need Python, Kubernetes, platform engineering experience",
+    "apply_url": "https://jobs.contoso.example/apply/123"
+  }
+]</textarea>
+        <button id="apply">Queue Auto-Apply</button>
+      </section>
+
+      <section>
+        <h2>Status</h2>
+        <pre id="status"></pre>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
