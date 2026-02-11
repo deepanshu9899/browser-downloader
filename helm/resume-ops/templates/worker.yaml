@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "resume-ops.fullname" . }}-worker
+spec:
+  replicas: {{ .Values.worker.replicaCount }}
+  selector:
+    matchLabels:
+      app: worker
+  template:
+    metadata:
+      labels:
+        app: worker
+    spec:
+      containers:
+        - name: worker
+          image: {{ .Values.worker.image }}
+          imagePullPolicy: {{ .Values.imagePullPolicy }}
+          env:
+            - name: REDIS_URL
+              value: redis://{{ include "resume-ops.fullname" . }}-redis:6379/0
