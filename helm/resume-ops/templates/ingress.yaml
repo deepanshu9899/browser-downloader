@@ -3,18 +3,10 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: {{ include "resume-ops.fullname" . }}-frontend
-  {{- with .Values.frontend.ingress.annotations }}
   annotations:
-    {{- toYaml . | nindent 4 }}
-  {{- end }}
+    nginx.ingress.kubernetes.io/whitelist-source-range: 10.0.0.0/8,172.16.0.0/12,192.168.0.0/16
 spec:
   ingressClassName: {{ .Values.frontend.ingress.className }}
-  {{- if .Values.frontend.ingress.tls.enabled }}
-  tls:
-    - hosts:
-        - {{ .Values.frontend.ingress.host }}
-      secretName: {{ .Values.frontend.ingress.tls.secretName }}
-  {{- end }}
   rules:
     - host: {{ .Values.frontend.ingress.host }}
       http:

@@ -54,27 +54,6 @@ python -m http.server 8080 --directory frontend
 3. Paste jobs into UI and queue auto-apply.
 4. Worker consumes queue and simulates ATS submissions.
 
-
-## Environment preparation
-
-Use the helper script to install deployment tooling (`helm`, `kubectl`):
-
-```bash
-./scripts/prepare_env.sh
-```
-
-Then deploy:
-
-```bash
-./scripts/deploy_resume_ops.sh
-```
-
-Public frontend URL deploy:
-
-```bash
-PUBLIC=true INGRESS_HOST=resume-ops.example.com ./scripts/deploy_resume_ops.sh
-```
-
 ## Helm deployment
 
 ```bash
