@@ -8,9 +8,10 @@ frontend:
     port: 80
   ingress:
     enabled: true
-    className: nginx
-    host: resume-ops.example.com
-    annotations: {}
+    className: private-nginx
+    host: resume-ops.internal.example.com
+    annotations:
+      nginx.ingress.kubernetes.io/whitelist-source-range: 10.0.0.0/8,172.16.0.0/12,192.168.0.0/16
     tls:
       enabled: false
       secretName: ""
